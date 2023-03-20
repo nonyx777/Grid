@@ -10,10 +10,10 @@ void Engine::initWindow(){
     this->window = new sf::RenderWindow(this->video_mode, "Grid", sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close);
     this->window->setFramerateLimit(60);
 
-    this->column = this->video_mode.width/30;
-    this->row = this->video_mode.height/30;
+    this->column = this->video_mode.width/20;
+    this->row = this->video_mode.height/20;
     //calling grid layout function
-    this->configureGridLayout(this->column + 10, this->row + 10);
+    this->configureGridLayout(this->column, this->row);
 }
 
 //defining constructor and destructor
@@ -45,7 +45,11 @@ void Engine::update(){
     this->mouse_position = sf::Mouse::getPosition(*this->window);
     this->mouse_position_view = this->window->mapPixelToCoords(this->mouse_position);
 
-    // std::cout << this->column << " " << this->row << std::endl;
+    for(Cell &cell : this->cells)
+        this->crol.neighbourCheck(cell, this->cells);
+
+    for(Cell &cell : this->cells)
+        cell.update();
 }
 void Engine::render(){
     this->window->clear(sf::Color::Black);
@@ -59,7 +63,9 @@ void Engine::render(){
 void Engine::configureGridLayout(int column, int row){
     for(int i = 0; i < row; i++){
         for(int j = 0; j < column; j++){
-            Cell cell = Cell(sf::Vector2f(30.f, 30.f), sf::Vector2f(j * column, i * row));
+            Cell cell = Cell(sf::Vector2f(20.f, 20.f), sf::Vector2f(j * column, i * row));
+            cell.column = j;
+            cell.row = i;
             this->cells.push_back(cell);
         }
     }
