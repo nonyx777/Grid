@@ -10,10 +10,10 @@ void Engine::initWindow(){
     this->window = new sf::RenderWindow(this->video_mode, "Grid", sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close);
     this->window->setFramerateLimit(60);
 
-    this->column = this->video_mode.width/20;
-    this->row = this->video_mode.height/20;
+    this->column = this->video_mode.width/30.f;
+    this->row = this->video_mode.height/30.f;
     //calling grid layout function
-    this->configureGridLayout(this->column, this->row);
+    this->configureGridLayout(this->column + 10, this->row + 10);
 }
 
 //defining constructor and destructor
@@ -63,7 +63,7 @@ void Engine::render(){
 void Engine::configureGridLayout(int column, int row){
     for(int i = 0; i < row; i++){
         for(int j = 0; j < column; j++){
-            Cell cell = Cell(sf::Vector2f(20.f, 20.f), sf::Vector2f(j * column, i * row));
+            Cell cell = Cell(sf::Vector2f(30.f, 30.f), sf::Vector2f(j * column, i * row));
             cell.column = j;
             cell.row = i;
             this->cells.push_back(cell);

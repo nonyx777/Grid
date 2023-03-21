@@ -7,7 +7,7 @@ Crol::Crol(){
 //defining functions
 void Crol::neighbourCheck(Cell &cell, std::vector<Cell> &cells){
 
-    std::this_thread::sleep_for(std::chrono::microseconds(5));
+    std::this_thread::sleep_for(std::chrono::microseconds(100));
 
     //check neighbouring cells' state
     int total = 0;
@@ -23,8 +23,6 @@ void Crol::neighbourCheck(Cell &cell, std::vector<Cell> &cells){
                 total = cell_neighbour.state == sf::Color::White ? total + 1 : total + 0;
             }
         }
-
-        // std::cout << total << std::endl;
     }
 
     //changing state depending on the state of the neighbours
