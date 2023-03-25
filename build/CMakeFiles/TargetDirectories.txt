@@ -1,3 +1,0 @@
-/home/nonyx/Desktop/scripts/C++/personal/WhatEverComesToMind/Grid/build/CMakeFiles/grid.dir
-/home/nonyx/Desktop/scripts/C++/personal/WhatEverComesToMind/Grid/build/CMakeFiles/edit_cache.dir
-/home/nonyx/Desktop/scripts/C++/personal/WhatEverComesToMind/Grid/build/CMakeFiles/rebuild_cache.dir

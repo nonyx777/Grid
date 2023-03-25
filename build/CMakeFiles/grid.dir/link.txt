@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/grid.dir/demos/ConwaysRuleOfLife/Crol.cpp.o CMakeFiles/grid.dir/src/GridLayout/Cell.cpp.o CMakeFiles/grid.dir/src/interface/Engine.cpp.o CMakeFiles/grid.dir/src/main.cpp.o CMakeFiles/grid.dir/src/particles/Sand.cpp.o CMakeFiles/grid.dir/src/particles/Water.cpp.o -o grid  -lsfml-window -lsfml-graphics -lsfml-system 

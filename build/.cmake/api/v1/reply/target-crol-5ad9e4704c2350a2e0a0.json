@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "grid"
+			"path" : "crol"
 		}
 	],
 	"backtrace" : 1,
@@ -79,7 +79,7 @@
 			]
 		}
 	],
-	"id" : "grid::@6890427a1f51a3e7e1df",
+	"id" : "crol::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -106,8 +106,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "grid",
-	"nameOnDisk" : "grid",
+	"name" : "crol",
+	"nameOnDisk" : "crol",
 	"paths" : 
 	{
 		"build" : ".",
