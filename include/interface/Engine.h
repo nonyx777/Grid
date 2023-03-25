@@ -28,8 +28,9 @@ class Engine{
         sf::Vector2f mouse_position_view;
 
         //grid related variabless
-        std::vector<Cell> cells;
-        int column, row;
+        int row;
+        int column;
+        Cell grid_matrix[30][30];//hard coded, should change if row and column change
 
     public:
         //constructor and destructor

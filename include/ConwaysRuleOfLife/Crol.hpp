@@ -7,5 +7,5 @@ class Crol{
     public:
         Crol();
     public:
-        void neighbourCheck(Cell &cell, std::vector<Cell> &cells);
+        void neighbourCheck(Cell &cell, Cell (&grid_matrix)[30][30]);
 };

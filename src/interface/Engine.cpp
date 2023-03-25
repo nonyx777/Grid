@@ -45,16 +45,26 @@ void Engine::update(){
     this->mouse_position = sf::Mouse::getPosition(*this->window);
     this->mouse_position_view = this->window->mapPixelToCoords(this->mouse_position);
 
-    for(Cell &cell : this->cells)
-        this->crol.neighbourCheck(cell, this->cells);
 
-    for(Cell &cell : this->cells)
-        cell.update();
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 20; j++){
+            this->crol.neighbourCheck(this->grid_matrix[i][j], this->grid_matrix);
+        }
+    }
+
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 20; j++){
+            this->grid_matrix[i][j].update();
+        }
+    }
 }
 void Engine::render(){
     this->window->clear(sf::Color::Black);
-    for(Cell &cell : this->cells){
-        cell.render(this->window);
+    
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 20; j++){
+            this->grid_matrix[i][j].render(this->window);
+        }
     }
     this->window->display();
 }
@@ -66,7 +76,7 @@ void Engine::configureGridLayout(int column, int row){
             Cell cell = Cell(sf::Vector2f(30.f, 30.f), sf::Vector2f(j * column, i * row));
             cell.column = j;
             cell.row = i;
-            this->cells.push_back(cell);
+            this->grid_matrix[i][j] = cell;
         }
     }
 }

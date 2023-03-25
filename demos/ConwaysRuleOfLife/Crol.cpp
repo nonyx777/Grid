@@ -5,25 +5,32 @@ Crol::Crol(){
 }
 
 //defining functions
-void Crol::neighbourCheck(Cell &cell, std::vector<Cell> &cells){
+void Crol::neighbourCheck(Cell &cell, Cell (&grid_matrix)[30][30]){
 
-    std::this_thread::sleep_for(std::chrono::microseconds(100));
+    std::this_thread::sleep_for(std::chrono::microseconds(200));
 
     //check neighbouring cells' state
     int total = 0;
-    for(Cell &cell_neighbour : cells){
-        if(cell_neighbour.row == (cell.row - 1) || cell_neighbour.row == (cell.row + 1)){
-            if(cell_neighbour.column == (cell.column - 1) || cell_neighbour.column == (cell.column) || cell_neighbour.column == (cell.column + 1)){
-                total = cell_neighbour.state == sf::Color::White ? total + 1 : total + 0;
-            }
-        }
 
-        if(cell_neighbour.row == cell.row){
-            if(cell_neighbour.column == (cell.column - 1) || cell_neighbour.column == (cell.column + 1)){
-                total = cell_neighbour.state == sf::Color::White ? total + 1 : total + 0;
-            }
-        }
-    }
+    // int matrix_row_max = row == 29 ?
+
+    total = grid_matrix[cell.row-1][cell.column-1].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row-1][cell.column].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row-1][cell.column+1].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row][cell.column-1].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row][cell.column+1].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row+1][cell.column-1].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row+1][cell.column].state == sf::Color::White ? total + 1 : total + 0; 
+    total = grid_matrix[cell.row+1][cell.column+1].state == sf::Color::White ? total + 1 : total + 0; 
+    
+    // for(int i = cell.row-1; i <= cell.row+1; i++){
+    //     for(int j = cell.column-1; j <= cell.column+1; j++){
+    //         if(row != cell.row && col != cell.column){
+    //             total = grid_matrix[i][j].state == sf::Color::White ? total + 1 : total + 0;
+    //             std::cout << "row: " << row << "col: " << col << std::endl;
+    //         }
+    //     }
+    // }
 
     //changing state depending on the state of the neighbours
     if(total == 3)
