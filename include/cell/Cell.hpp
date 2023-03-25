@@ -1,10 +1,11 @@
 #pragma once
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
 class Cell{
-    protected:
+    public:
         sf::RectangleShape cell_property;
     
     public:

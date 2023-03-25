@@ -4,9 +4,9 @@
 Cell::Cell(){
     //...
 }
+
+//constuctor for Conway's Rule Of Life
 Cell::Cell(sf::Vector2f size, sf::Vector2f position){
-    // auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-    // srand(seed);
     int random_number = rand() % 2;
     sf::Color cell_color = random_number == 1 ? sf::Color::White : sf::Color::Transparent;
 
