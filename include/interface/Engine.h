@@ -1,10 +1,6 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-// #include "../cell/Cell.hpp"
-// #include "../../src/Particles/Sand.cpp"
-// #include "../../src/Particles/Water.cpp"
-#include "../particles/Particle.hpp"
 #include "../ConwaysRuleOfLife/Crol.hpp"
 
 using namespace std;
