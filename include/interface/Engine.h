@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../cell/Cell.hpp"
+#include <math.h>
 
 using namespace std;
 
@@ -39,6 +40,8 @@ class Engine{
 
         //custom functions
         void configureGridLayout(int column, int row);
+        void selectSource(sf::Vector2f mouse_position);
+        void selectEnd(sf::Vector2f mouse_position);
 
         //Accessors
         const bool running() const;

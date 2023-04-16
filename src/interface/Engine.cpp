@@ -37,6 +37,11 @@ void Engine::pollEvent(){
             case sf::Event::Closed:
                 this->window->close();
                 break;
+            case sf::Event::MouseButtonPressed:
+                if(this->event.mouseButton.button == sf::Mouse::Left)
+                    this->selectSource(this->mouse_position_view);
+                else if(this->event.mouseButton.button == sf::Mouse::Right)
+                    this->selectEnd(this->mouse_position_view);
         }
     }
 }
@@ -72,4 +77,16 @@ void Engine::configureGridLayout(int column, int row){
             this->grid_matrix[i][j] = cell;
         }
     }
+}
+void Engine::selectSource(sf::Vector2f mouse_position){
+    int row_index = floor(mouse_position.y/30.0);
+    int column_index = floor(mouse_position.x/30.0);
+
+    this->grid_matrix[row_index][column_index].cell_property.setFillColor(sf::Color::Green);
+}
+void Engine::selectEnd(sf::Vector2f mouse_position){
+    int row_index = floor(mouse_position.y/30.0);
+    int column_index = floor(mouse_position.x/30.0);
+
+    this->grid_matrix[row_index][column_index].cell_property.setFillColor(sf::Color::Red);
 }
