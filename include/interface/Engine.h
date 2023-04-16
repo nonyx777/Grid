@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../ConwaysRuleOfLife/Crol.hpp"
+#include "../cell/Cell.hpp"
 
 using namespace std;
 
@@ -17,7 +17,6 @@ class Engine{
         sf::Event event;
 
         //instantiating objects
-        Crol crol;
 
         //mouse position
         sf::Vector2i mouse_position;

@@ -7,7 +7,7 @@ project(Grid VERSION 1.0)
 find_package(SFML 2 REQUIRED network audio graphics window system)
 
 file(GLOB_RECURSE SRC_FILES src/*.cpp demos/*.cpp)
-add_executable(crol ${SRC_FILES})
+add_executable(findpath ${SRC_FILES})
 
-target_include_directories(crol PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${SFML_INCLUDE_DIR})
-target_link_libraries(crol PUBLIC -lsfml-window -lsfml-graphics -lsfml-system)
+target_include_directories(findpath PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${SFML_INCLUDE_DIR})
+target_link_libraries(findpath PUBLIC -lsfml-window -lsfml-graphics -lsfml-system)

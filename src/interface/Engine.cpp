@@ -45,13 +45,6 @@ void Engine::update(){
     this->mouse_position = sf::Mouse::getPosition(*this->window);
     this->mouse_position_view = this->window->mapPixelToCoords(this->mouse_position);
 
-
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j++){
-            this->crol.neighbourCheck(this->grid_matrix[i][j], this->grid_matrix);
-        }
-    }
-
     for(int i = 0; i < 20; i++){
         for(int j = 0; j < 20; j++){
             this->grid_matrix[i][j].update();
