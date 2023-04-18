@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "findpath"
+			"path" : "simulation"
 		}
 	],
 	"backtrace" : 1,
@@ -76,7 +76,7 @@
 			]
 		}
 	],
-	"id" : "findpath::@6890427a1f51a3e7e1df",
+	"id" : "simulation::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -103,8 +103,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "findpath",
-	"nameOnDisk" : "findpath",
+	"name" : "simulation",
+	"nameOnDisk" : "simulation",
 	"paths" : 
 	{
 		"build" : ".",

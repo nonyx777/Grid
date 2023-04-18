@@ -26,7 +26,7 @@ class Engine{
         //grid related variabless
         int row;
         int column;
-        Cell grid_matrix[30][30];//hard coded, should change if row and column change
+        Cell grid_matrix[60][60];//hard coded, should change if row and column change //default 30 30
 
     public:
         //constructor and destructor
@@ -40,8 +40,7 @@ class Engine{
 
         //custom functions
         void configureGridLayout(int column, int row);
-        void selectSource(sf::Vector2f mouse_position);
-        void selectEnd(sf::Vector2f mouse_position);
+        void spawnParticle(sf::Vector2f mouse_position);
 
         //Accessors
         const bool running() const;
