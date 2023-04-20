@@ -24,9 +24,10 @@ class Engine{
         sf::Vector2f mouse_position_view;
 
         //grid related variabless
+        int size;
         int row;
         int column;
-        Cell grid_matrix[30][30];//hard coded, should change if row and column change
+        Cell grid_matrix[60][60];//hard coded, should change if row and column change
 
     public:
         //constructor and destructor

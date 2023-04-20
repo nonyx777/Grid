@@ -7,5 +7,5 @@ class Crol{
     public:
         Crol();
     public:
-        void neighbourCheck(Cell &cell, Cell (&grid_matrix)[30][30]);
+        void neighbourCheck(Cell &cell, Cell (&grid_matrix)[60][60]);
 };

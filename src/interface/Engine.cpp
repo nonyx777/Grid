@@ -10,10 +10,13 @@ void Engine::initWindow(){
     this->window = new sf::RenderWindow(this->video_mode, "Grid", sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close);
     this->window->setFramerateLimit(60);
 
-    this->column = this->video_mode.width/30.f;
-    this->row = this->video_mode.height/30.f;
+    this->column = 60.f;
+    this->row = 60.f;
+
+    this->size = this->video_mode.width/this->column;
+
     //calling grid layout function
-    this->configureGridLayout(this->column + 10, this->row + 10);
+    this->configureGridLayout(this->column, this->row);
 }
 
 //defining constructor and destructor
@@ -46,14 +49,14 @@ void Engine::update(){
     this->mouse_position_view = this->window->mapPixelToCoords(this->mouse_position);
 
 
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j++){
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
             this->crol.neighbourCheck(this->grid_matrix[i][j], this->grid_matrix);
         }
     }
 
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j++){
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
             this->grid_matrix[i][j].update();
         }
     }
@@ -61,8 +64,8 @@ void Engine::update(){
 void Engine::render(){
     this->window->clear(sf::Color::Black);
     
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j++){
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
             this->grid_matrix[i][j].render(this->window);
         }
     }
@@ -71,9 +74,9 @@ void Engine::render(){
 
 //defining custom functions
 void Engine::configureGridLayout(int column, int row){
-    for(int i = 0; i < row; i++){
-        for(int j = 0; j < column; j++){
-            Cell cell = Cell(sf::Vector2f(30.f, 30.f), sf::Vector2f(j * column, i * row));
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
+            Cell cell = Cell(sf::Vector2f(10.f, 10.f), sf::Vector2f(j * this->size, i * this->size));
             cell.column = j;
             cell.row = i;
             this->grid_matrix[i][j] = cell;
