@@ -9,13 +9,21 @@ class Cell{
         sf::RectangleShape cell_property;
     
     public:
+        enum Type{
+            SAND,
+            WATER
+        };
+
+    public:
         Cell();
         Cell(sf::Vector2f size, sf::Vector2f position);
         int column, row;
         sf::Color state;
+        Type type;
     
     public:
         sf::Vector2f size;
+
 
     public:
         void update();
