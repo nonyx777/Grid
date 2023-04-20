@@ -24,6 +24,7 @@ class Engine{
         sf::Vector2f mouse_position_view;
 
         //grid related variabless
+        int size;
         int row;
         int column;
         Cell grid_matrix[60][60];//hard coded, should change if row and column change //default 30 30

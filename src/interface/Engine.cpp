@@ -10,8 +10,9 @@ void Engine::initWindow(){
     this->window = new sf::RenderWindow(this->video_mode, "Grid", sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close);
     this->window->setFramerateLimit(60);
 
-    this->column = this->video_mode.width/60.f;
-    this->row = this->video_mode.height/60.f;
+    this->size = this->video_mode.width/60;
+    this->column = 60;
+    this->row = 60;
     //calling grid layout function
     this->configureGridLayout(this->column, this->row);
 }
@@ -57,8 +58,8 @@ void Engine::update(){
 void Engine::render(){
     this->window->clear(sf::Color::Black);
     
-    for(int i = 0; i < 60; i++){
-        for(int j = 0; j < 60; j++){
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
             this->grid_matrix[i][j].render(this->window);
         }
     }
@@ -67,9 +68,9 @@ void Engine::render(){
 
 //defining custom functions
 void Engine::configureGridLayout(int column, int row){
-    for(int i = 0; i < 60; i++){
-        for(int j = 0; j < 60; j++){
-            Cell cell = Cell(sf::Vector2f(10.f, 10.f), sf::Vector2f(j * column, i * row));
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
+            Cell cell = Cell(sf::Vector2f(this->size, this->size), sf::Vector2f(j * this->size, i * this->size));
             cell.column = j;
             cell.row = i;
             this->grid_matrix[i][j] = cell;
