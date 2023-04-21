@@ -38,9 +38,20 @@ void Engine::pollEvent(){
             case sf::Event::Closed:
                 this->window->close();
                 break;
-            case sf::Event::MouseButtonPressed:
-                if(this->event.mouseButton.button == sf::Mouse::Left)
-                    this->spawnParticle(this->mouse_position_view);
+            case sf::Event::MouseWheelScrolled:
+                if(this->event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel){
+                    if(this->event.mouseWheelScroll.delta > 0)
+                        if(this->cell_type < 3)
+                            this->cell_type++;
+                        else
+                            this->cell_type = 0;
+                    else if(this->event.mouseWheelScroll.delta < 0)
+                        if(this->cell_type > 0)
+                            this->cell_type--;
+                        else
+                            this->cell_type = 3;
+                }
+                break;
         }
     }
 }
@@ -48,6 +59,9 @@ void Engine::update(){
     this->pollEvent();
     this->mouse_position = sf::Mouse::getPosition(*this->window);
     this->mouse_position_view = this->window->mapPixelToCoords(this->mouse_position);
+
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        this->spawnParticle(this->mouse_position_view);
 
     for(int i = 0; i < this->row; i++){
         for(int j = 0; j < this->column; j++){
@@ -73,6 +87,7 @@ void Engine::configureGridLayout(int column, int row){
             Cell cell = Cell(sf::Vector2f(this->size, this->size), sf::Vector2f(j * this->size, i * this->size));
             cell.column = j;
             cell.row = i;
+            cell.type = Cell().EMPTY;
             this->grid_matrix[i][j] = cell;
         }
     }
@@ -81,5 +96,8 @@ void Engine::spawnParticle(sf::Vector2f mouse_position){
     int row_index = floor(mouse_position.y/10.0);
     int column_index = floor(mouse_position.x/10.0);
 
-    this->grid_matrix[row_index][column_index].cell_property.setFillColor(sf::Color(100, 50, 90, 255));
+    this->grid_matrix[row_index][column_index].type = this->cell_type == 1 ? 
+    Cell().SAND : this->cell_type == 2 ? 
+    Cell().WATER : this->cell_type == 3 ? 
+    Cell().ROCK : Cell().EMPTY;
 }

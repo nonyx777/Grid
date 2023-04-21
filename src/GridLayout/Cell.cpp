@@ -19,7 +19,26 @@ Cell::Cell(sf::Vector2f size, sf::Vector2f position){
 
 //defining functions
 void Cell::update(){
+    setColor();
 }
 void Cell::render(sf::RenderTarget* target){
     target->draw(this->cell_property);
+}
+
+//defining custom functions
+void Cell::setColor(){
+    switch(this->type){
+        case Type::EMPTY:
+            this->cell_property.setFillColor(empty_color);
+            break;
+        case Type::SAND:
+            this->cell_property.setFillColor(sand_color);
+            break;
+        case Type::WATER:
+            this->cell_property.setFillColor(water_color);
+            break;
+        case Type::ROCK:
+            this->cell_property.setFillColor(rock_color);
+            break;
+    }
 }

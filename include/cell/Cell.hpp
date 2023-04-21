@@ -4,14 +4,22 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
+const sf::Color sand_color = sf::Color(183, 119, 41, 255);
+const sf::Color water_color = sf::Color(5, 195, 221, 255);
+const sf::Color rock_color = sf::Color(219, 226, 233, 255);
+const sf::Color empty_color = sf::Color::Transparent;
+
+
 class Cell{
     public:
         sf::RectangleShape cell_property;
     
     public:
         enum Type{
+            EMPTY,
             SAND,
-            WATER
+            WATER,
+            ROCK
         };
 
     public:
@@ -28,4 +36,7 @@ class Cell{
     public:
         void update();
         void render(sf::RenderTarget* target);
+    
+    public:
+        void setColor();
 };
