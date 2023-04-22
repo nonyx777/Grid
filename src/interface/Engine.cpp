@@ -6,7 +6,7 @@ void Engine::initVariables(){
 
     //loading the font
     try{
-        this->font.loadFromFile("fonts/dejavu-sans/ttf/DejaVuSans.ttf");
+        this->font.loadFromFile("../fonts/dejavu-sans/ttf/DejaVuSans.ttf");
     }catch(...){
         std::cout << "Couldn't load the font" << std::endl;
     }
