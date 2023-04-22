@@ -70,18 +70,27 @@ void Engine::update(){
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         this->spawnParticle(this->mouse_position_view);
 
-    for(int i = 0; i < this->row; i++){
-        for(int j = 0; j < this->column; j++){
-            this->grid_matrix[i][j].update();
-        }
-    }
-
+    //assigning the text to display
     std::string text_ = this->cell_type == 1 ? 
     sand_text : this->cell_type == 2 ? 
     water_text : this->cell_type == 3 ? 
     rock_text : empty_text;
 
     this->setText(text_);
+
+    //...
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
+            this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
+        }
+    }
+
+    //...
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
+            this->grid_matrix[i][j].update();
+        }
+    }
 }
 void Engine::render(){
     this->window->clear(sf::Color::Black);

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "../cell/Cell.hpp"
 #include <math.h>
+#include "../simulation/Simulation.hpp"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class Engine{
         sf::Event event;
 
         //instantiating objects
+        Simulation simulation;
 
         //mouse position
         sf::Vector2i mouse_position;
