@@ -6,6 +6,12 @@
 
 using namespace std;
 
+//particle names
+const std::string empty_text = "EMPTY";
+const std::string sand_text = "SAND";
+const std::string water_text = "WATER";
+const std::string rock_text = "ROCK";
+
 class Engine{
     private:
         //initializer functions
@@ -32,6 +38,10 @@ class Engine{
         //cell type represented by an integer
         int cell_type;
 
+        //text related variables(what kind of particle)
+        sf::Font font;
+        sf::Text text;
+
     public:
         //constructor and destructor
         Engine();
@@ -45,6 +55,7 @@ class Engine{
         //custom functions
         void configureGridLayout(int column, int row);
         void spawnParticle(sf::Vector2f mouse_position);
+        void setText(std::string particle_text);
 
         //Accessors
         const bool running() const;

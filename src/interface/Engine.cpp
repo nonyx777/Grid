@@ -3,6 +3,13 @@
 //defining initializer functions
 void Engine::initVariables(){
     this->window = nullptr;
+
+    //loading the font
+    try{
+        this->font.loadFromFile("fonts/dejavu-sans/ttf/DejaVuSans.ttf");
+    }catch(...){
+        std::cout << "Couldn't load the font" << std::endl;
+    }
 }
 void Engine::initWindow(){
     this->video_mode.width = 600;
@@ -68,6 +75,13 @@ void Engine::update(){
             this->grid_matrix[i][j].update();
         }
     }
+
+    std::string text_ = this->cell_type == 1 ? 
+    sand_text : this->cell_type == 2 ? 
+    water_text : this->cell_type == 3 ? 
+    rock_text : empty_text;
+
+    this->setText(text_);
 }
 void Engine::render(){
     this->window->clear(sf::Color::Black);
@@ -77,6 +91,9 @@ void Engine::render(){
             this->grid_matrix[i][j].render(this->window);
         }
     }
+
+    this->window->draw(this->text);
+
     this->window->display();
 }
 
@@ -100,4 +117,11 @@ void Engine::spawnParticle(sf::Vector2f mouse_position){
     Cell().SAND : this->cell_type == 2 ? 
     Cell().WATER : this->cell_type == 3 ? 
     Cell().ROCK : Cell().EMPTY;
+}
+void Engine::setText(std::string particle_text){
+    this->text.setFont(this->font);
+    this->text.setString(particle_text);
+    this->text.setCharacterSize(18);
+    this->text.setFillColor(sf::Color::White);
+    this->text.setPosition(sf::Vector2f(this->video_mode.width/1.2f, this->video_mode.height/1.3f));
 }
