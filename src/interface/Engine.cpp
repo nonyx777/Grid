@@ -81,14 +81,13 @@ void Engine::update(){
     //...
     for(int i = 0; i < this->row; i++){
         for(int j = 0; j < this->column; j++){
-            this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
+            this->grid_matrix[i][j].update();
         }
     }
 
-    //...
     for(int i = 0; i < this->row; i++){
         for(int j = 0; j < this->column; j++){
-            this->grid_matrix[i][j].update();
+            this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
         }
     }
 }
@@ -132,5 +131,5 @@ void Engine::setText(std::string particle_text){
     this->text.setString(particle_text);
     this->text.setCharacterSize(18);
     this->text.setFillColor(sf::Color::White);
-    this->text.setPosition(sf::Vector2f(this->video_mode.width/1.2f, this->video_mode.height/1.3f));
+    this->text.setPosition(sf::Vector2f(this->video_mode.width/1.2f, this->video_mode.height/1.1f));
 }
