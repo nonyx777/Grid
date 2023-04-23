@@ -78,25 +78,25 @@ void Engine::update(){
 
     this->setText(text_);
 
-    //...
-    for(int i = 0; i < this->row; i++){
-        for(int j = 0; j < this->column; j++){
-            this->grid_matrix[i][j].update();
-        }
-    }
-
-    for(int i = 0; i < this->row; i++){
-        for(int j = 0; j < this->column; j++){
-            this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
-        }
-    }
+    
+    
 }
 void Engine::render(){
     this->window->clear(sf::Color::Black);
-    
+
     for(int i = 0; i < this->row; i++){
         for(int j = 0; j < this->column; j++){
-            this->grid_matrix[i][j].render(this->window);
+            this->grid_matrix[i][j].update();
+            if(this->grid_matrix[i][j].type == Cell().SAND || this->grid_matrix[i][j].type == Cell().WATER){
+                this->grid_matrix[i][j].update();
+                this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
+            }
+        }
+    }
+    
+    for(int i = this->row-1; i > 0; i--){
+        for(int j = this->column-1; j > 0; j--){
+            this->grid_matrix[j][i].render(this->window);
         }
     }
 
@@ -118,8 +118,8 @@ void Engine::configureGridLayout(int column, int row){
     }
 }
 void Engine::spawnParticle(sf::Vector2f mouse_position){
-    int row_index = floor(mouse_position.y/10.0);
-    int column_index = floor(mouse_position.x/10.0);
+    int row_index = floor(mouse_position.y/this->size);
+    int column_index = floor(mouse_position.x/this->size);
 
     this->grid_matrix[row_index][column_index].type = this->cell_type == 1 ? 
     Cell().SAND : this->cell_type == 2 ? 

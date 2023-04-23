@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <chrono>
+#include <thread>
 
 const sf::Color sand_color = sf::Color(183, 119, 41, 255);
 const sf::Color water_color = sf::Color(5, 195, 221, 255);
