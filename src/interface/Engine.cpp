@@ -78,24 +78,21 @@ void Engine::update(){
 
     this->setText(text_);
 
-    
-    
-}
-void Engine::render(){
-    this->window->clear(sf::Color::Black);
-
-    for(int i = 0; i < this->row; i++){
-        for(int j = 0; j < this->column; j++){
+    for(int i = this->row-2; i > 1; i--){
+        for(int j = this->column-2; j > 1; j--){
             this->grid_matrix[i][j].update();
             if(this->grid_matrix[i][j].type == Cell().SAND || this->grid_matrix[i][j].type == Cell().WATER){
-                this->grid_matrix[i][j].update();
                 this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
             }
         }
     }
     
-    for(int i = this->row-1; i > 0; i--){
-        for(int j = this->column-1; j > 0; j--){
+}
+void Engine::render(){
+    this->window->clear(sf::Color::Black);
+    
+    for(int i = 0; i < this->row; i++){
+        for(int j = 0; j < this->column; j++){
             this->grid_matrix[j][i].render(this->window);
         }
     }
