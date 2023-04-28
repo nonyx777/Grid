@@ -35,7 +35,7 @@ class Engine{
         int size;
         int row;
         int column;
-        Cell grid_matrix[60][60];//hard coded, should change if row and column change //default 30 30
+        Cell grid_matrix[100][100];//hard coded, should change if row and column change //default 30 30
 
         //cell type represented by an integer
         int cell_type;
