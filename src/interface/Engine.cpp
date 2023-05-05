@@ -80,9 +80,9 @@ void Engine::update(){
 
     for(int i = this->row-2; i > 1; i--){
         for(int j = this->column-2; j > 1; j--){
-            this->grid_matrix[i][j].update();
-            if(this->grid_matrix[i][j].type == Cell().SAND || this->grid_matrix[i][j].type == Cell().WATER){
-                this->simulation.simulateParticle(this->grid_matrix[i][j], this->grid_matrix);
+            this->grid_vector[i][j].update();
+            if(this->grid_vector[i][j].type == Cell().SAND || this->grid_vector[i][j].type == Cell().WATER){
+                this->simulation.simulateParticle(this->grid_vector[i][j], this->grid_vector);
             }
         }
     }
@@ -91,9 +91,9 @@ void Engine::update(){
 void Engine::render(){
     this->window->clear(sf::Color::Black);
     
-    for(int i = 0; i < this->row; i++){
-        for(int j = 0; j < this->column; j++){
-            this->grid_matrix[j][i].render(this->window);
+    for(int i = 0; i < this->grid_vector.size(); i++){
+        for(int j = 0; j < this->grid_vector[i].size(); j++){
+            this->grid_vector[j][i].render(this->window);
         }
     }
 
@@ -105,13 +105,15 @@ void Engine::render(){
 //defining custom functions
 void Engine::configureGridLayout(int column, int row){
     for(int i = 0; i < this->row; i++){
+        std::vector<Cell> vec_in;
         for(int j = 0; j < this->column; j++){
             Cell cell = Cell(sf::Vector2f(this->size, this->size), sf::Vector2f(j * this->size, i * this->size));
             cell.column = j;
             cell.row = i;
             cell.type = Cell().EMPTY;
-            this->grid_matrix[i][j] = cell;
+            vec_in.push_back(cell);
         }
+        this->grid_vector.push_back(vec_in);
     }
 }
 void Engine::spawnParticle(sf::Vector2f mouse_position){
@@ -121,17 +123,12 @@ void Engine::spawnParticle(sf::Vector2f mouse_position){
     //selecting multiple cells
     for(int i = row_index - 5; i < row_index + 5; i++){
         for(int j = column_index - 5; j < column_index + 5; j++){
-            this->grid_matrix[i][j].type = this->cell_type == 1 ?
+            this->grid_vector[i][j].type = this->cell_type == 1 ?
             Cell().SAND : this->cell_type == 2 ?
             Cell().WATER : this->cell_type == 3 ?
             Cell().ROCK : Cell().EMPTY;
         }
     }
-
-    // this->grid_matrix[row_index][column_index].type = this->cell_type == 1 ? 
-    // Cell().SAND : this->cell_type == 2 ? 
-    // Cell().WATER : this->cell_type == 3 ? 
-    // Cell().ROCK : Cell().EMPTY;
 }
 void Engine::setText(std::string particle_text){
     this->text.setFont(this->font);

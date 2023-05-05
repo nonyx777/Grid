@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "../cell/Cell.hpp"
 #include <math.h>
 #include "../simulation/Simulation.hpp"
@@ -35,7 +36,7 @@ class Engine{
         int size;
         int row;
         int column;
-        Cell grid_matrix[100][100];//hard coded, should change if row and column change //default 30 30
+        std::vector<std::vector<Cell>> grid_vector;
 
         //cell type represented by an integer
         int cell_type;
