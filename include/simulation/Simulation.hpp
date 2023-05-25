@@ -15,4 +15,7 @@ class Simulation{
         //
         void checkLeftSand(int row, int column, std::vector<std::vector<Cell>>& grid_Vector);
         void checkRightSand(int row, int column, std::vector<std::vector<Cell>>& grid_Vector);
+
+        void checkLeftWater(int row, int column, std::vector<std::vector<Cell>>& grid_vector);
+        void checkRightWater(int row, int column, std::vector<std::vector<Cell>>& grid_vector);
 };
