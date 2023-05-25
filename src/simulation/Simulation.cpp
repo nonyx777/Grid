@@ -13,28 +13,26 @@ void Simulation::simulateSand(Cell &cell, std::vector<std::vector<Cell>>& grid_v
 
     auto seed = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
     srand(seed);
-    float number = 0.f + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/(2 - 0)));
+    float vertical_number = 0.f + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/(2 - 0)));
 
     if(grid_vector[row+1][column].type == Cell().EMPTY){
         grid_vector[row+1][column].type = Cell().SAND;
         grid_vector[row][column].type = Cell().EMPTY;
     }
+
     else if(grid_vector[row+1][column].type == Cell().WATER){
         grid_vector[row+1][column].type = Cell().SAND;
         grid_vector[row][column].type = Cell().WATER;
     }
-    //run a random number generator
-    //call the left check function if the number is 0
-    //call the right check function if the number is 1
 
-    else if(number <= 1.f){
+    else if(vertical_number <= 1.f){
         if(grid_vector[row+1][column-1].type == Cell().EMPTY){
             grid_vector[row+1][column-1].type = Cell().SAND;
             grid_vector[row][column].type = Cell().EMPTY;
         }
     }
 
-    else if(number > 1.f){
+    else if(vertical_number > 1.f){
         if(grid_vector[row+1][column+1].type == Cell().EMPTY){
             grid_vector[row+1][column+1].type = Cell().SAND;
             grid_vector[row][column].type = Cell().EMPTY;
@@ -96,19 +94,5 @@ void Simulation::simulateWater(Cell &cell, std::vector<std::vector<Cell>>& grid_
                 grid_vector[row][column].type = Cell().EMPTY;
             }   
         }
-    }
-}
-
-//sand....
-void Simulation::checkLeftSand(int row, int column, std::vector<std::vector<Cell>>& grid_vector){
-    if(grid_vector[row+1][column-1].type == Cell().EMPTY){
-        grid_vector[row+1][column-1].type = Cell().SAND;
-        grid_vector[row][column].type = Cell().EMPTY;
-    }
-}
-void Simulation::checkRightSand(int row, int column, std::vector<std::vector<Cell>>& grid_vector){
-    if(grid_vector[row+1][column+1].type == Cell().EMPTY){
-        grid_vector[row+1][column+1].type = Cell().SAND;
-        grid_vector[row][column].type = Cell().EMPTY;
     }
 }
