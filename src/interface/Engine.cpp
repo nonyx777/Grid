@@ -120,6 +120,11 @@ void Engine::spawnParticle(sf::Vector2f mouse_position){
     int row_index = floor(mouse_position.y/this->size);
     int column_index = floor(mouse_position.x/this->size);
 
+    if(row_index < 5 || row_index > 95)
+        return;
+    if(column_index < 5 || column_index > 95)
+        return;
+
     //selecting multiple cells
     for(int i = row_index - 5; i < row_index + 5; i++){
         for(int j = column_index - 5; j < column_index + 5; j++){
